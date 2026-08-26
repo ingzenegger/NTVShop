@@ -40,11 +40,23 @@ export const ProductSchema = z.object({
   is_active: z.boolean(),
   created_at: z.string(), //date
   updated_at: z.string(), //date
-  product_type: z.enum(["handmade", "pattern"]) ,
+  product_type: z.enum(["handmade", "pattern"]),
   product_assets: z.array(AssetSchema),
   product_variants: z.array(VariantSchema).default([]),
   product_attributes: z.array(AttributeSchema).default([]),
 });
+
+export const NewProductSchema = z.object({
+  name: TranslatedTextSchema,
+  slug: z.string().min(1),
+  description: TranslatedTextSchema,
+  price: z.number().positive(),
+  currency: z.literal("ISK"),
+  product_type: z.enum(["handmade", "pattern"]),
+  is_active: z.boolean(),
+});
+
+export type NewProduct = z.infer<typeof NewProductSchema>;
 
 export type Product = z.infer<typeof ProductSchema>;
 

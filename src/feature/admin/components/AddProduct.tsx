@@ -9,7 +9,9 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { Switch } from "@/shared/components/ui/switch";
+import { NewProductSchema } from "@/shared/types/product";
 import { useState } from "react";
+import { addProduct } from "../api/addProduct";
 
 export default function AddProduct() {
   const [nameIs, setNameIs] = useState("");
@@ -20,9 +22,46 @@ export default function AddProduct() {
   const [price, setPrice] = useState("");
   const [productType, setProductType] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  function handleValidate() {
+    const payload = {
+      name: { en: nameEn, is: nameIs },
+      slug,
+      description: { en: descriptionEn, is: descriptionIs },
+      price: Number(price),
+      currency: "ISK",
+      product_type: productType,
+      is_active: isActive,
+    };
+
+    const result = NewProductSchema.safeParse(payload);
+
+    if (!result.success) {
+      console.error(result.error);
+      setError("Please check the form - something isn't filled in correctly.");
+      return null;
+    }
+    setError(null);
+    return result.data;
+  }
 
   return (
-    <form className="flex flex-col gap-6 max-1-md">
+    <form
+      className="flex flex-col gap-6 max-1-md"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        const validated = handleValidate();
+        if (!validated) return;
+
+        try {
+          const newProduct = await addProduct(validated);
+          console.log("created product:", newProduct);
+        } catch {
+          setError("something went wrong saving the product. Try again.");
+        }
+      }}
+    >
       <h2 className="text-lg font-semibold">Add product</h2>
 
       <div className="grid gap-2">
@@ -102,9 +141,8 @@ export default function AddProduct() {
         <Label htmlFor="isActive">Active (visible in shop)</Label>
       </div>
 
-      <Button type="submit" disabled>
-        Add product (not wired up yet)
-      </Button>
+      {error && <p className="text-sm text-destructive">{error}</p>}
+      <Button type="submit">Add product</Button>
     </form>
   );
 }
