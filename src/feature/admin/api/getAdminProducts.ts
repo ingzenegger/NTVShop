@@ -1,7 +1,7 @@
 import { createClient } from "@/shared/lib/client";
 import { ProductSchema } from "@/shared/types/product";
 
-export async function getProducts() {
+export async function getAdminProducts() {
   const supabase = createClient();
   const { data } = await supabase
     .from("products")
