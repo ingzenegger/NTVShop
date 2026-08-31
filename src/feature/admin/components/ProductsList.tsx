@@ -27,7 +27,12 @@ export default function ProductsList() {
       {products.map((product) => (
         <Item key={product.id} variant="outline">
           <ItemContent>
-            <ItemTitle> {product.name[language]} </ItemTitle>
+            <ItemTitle>
+              {" "}
+              <Link to={`/admin/products/${product.id}`}>
+                {product.name[language]}
+              </Link>{" "}
+            </ItemTitle>
             <ItemDescription>
               {product.product_variants.length > 0
                 ? `${product.product_variants.length} variants`

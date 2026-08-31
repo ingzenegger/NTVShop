@@ -23,6 +23,7 @@ import AdminLayout from "./feature/admin/AdminLayout";
 import ProductsList from "./feature/admin/components/ProductsList";
 import AddProduct from "./feature/admin/components/AddProduct";
 import EditProduct from "./feature/admin/components/EditProduct";
+import ViewProduct from "./feature/admin/components/ViewProduct";
 
 function App() {
   useAuth();
@@ -53,6 +54,7 @@ function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="products" replace />} />
             <Route path="products" element={<ProductsList />} />
+            <Route path="products/:id/" element={<ViewProduct />} />
             <Route path="products/:id/edit" element={<EditProduct />} />
             <Route path="add" element={<AddProduct />} />
           </Route>

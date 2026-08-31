@@ -21,6 +21,13 @@ export const VariantSchema = z.object({
   created_at: z.string(), //date
 });
 
+export const NewVariantSchema = z.object({
+  product_id: z.uuid(),
+  name: TranslatedTextSchema,
+  price: z.number().int().nonnegative(),
+  stock_quantity: z.number(),
+});
+
 export const AttributeSchema = z.object({
   id: z.uuid(),
   product_id: z.uuid(),
@@ -63,5 +70,7 @@ export type Product = z.infer<typeof ProductSchema>;
 export type ProductAsset = z.infer<typeof AssetSchema>;
 
 export type ProductVariant = z.infer<typeof VariantSchema>;
+
+export type NewVariant = z.infer<typeof NewVariantSchema>;
 
 export type ProductAttribute = z.infer<typeof AttributeSchema>;

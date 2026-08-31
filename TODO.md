@@ -1,4 +1,4 @@
-# Adjustments needed for my future online shop (NOT the assignment!)
+# Future potential improvements
 
 - [ ] add name to the initial signup
 - [ ] for Layout.tsx make a seperate navBtn component? would take url and children components and handle styling
@@ -19,6 +19,8 @@
 - [ ] á mobile view (mögulega md og up líka) þarf að fá hlekki efst fyrir flokkana
 - [x] rename name_i18n/description_i18n columns (products, attributes, variants) back to name/description in DB — drop the `name:name_i18n` aliasing in queries once done
 
+- [ ] products: getProducts() selects unused created_at/updated_at - trim them out, but needs ProductSchema split first (storefront vs admin) since both fields are currently required
+
 ## admin page todos
 
 - [x] Access control - restrict /admin routes only to owner (role-check with supabase)
@@ -26,7 +28,10 @@
 - [x] Product list view - table/list of existing products (name, stock, active status) with edit links.
 - [x] Add product form - create new product, name in both languages, price, description, stock etc
 - [x] Edit product form - update existing product fields
-- [ ] variant management - add/edit/remove variants (color, price, stock) for a product
+- [x] variant management - add/edit/(remov postponed) variants (color, price, stock) for a product
 - [ ] image upload/management - add/replace/delete product photos(supabase storage) with limit to size
 - [ ] Deactivate product - soft delete via is_active on product table.
 - [ ] simplify getProducts/ProductSchema (storefront) now that getAdminProducts is separate — drop fields only admin needs
+
+- [ ] admin: ProductDetail assumes every product has ≥1 variant (`product_variants[0]`) - fine for now since assets need a variant_id anyway, but revisit if patterns end up not using variants the same way
+- [ ] admin: variant delete not implemented - complicated by product_assets referencing variant_id, figure out asset handling first
