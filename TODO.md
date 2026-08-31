@@ -17,16 +17,16 @@
 - [x] SETJA ALLT HELVÍTIS DRASLIÐ Á ÍSLENSKU? HVÍ GERÐI ÉG ÞAÐ EKKI STRAX???
 - [ ] Bæta við about síðu - af hverju "Hrossabrestur" - af því þannig hljóma úlnliðirnir á mér eftir of mikla handavinnu
 - [ ] á mobile view (mögulega md og up líka) þarf að fá hlekki efst fyrir flokkana
-- [ ] rename name_i18n/description_i18n columns (products, attributes, variants) back to name/description in DB — drop the `name:name_i18n` aliasing in queries once done
-
+- [x] rename name_i18n/description_i18n columns (products, attributes, variants) back to name/description in DB — drop the `name:name_i18n` aliasing in queries once done
 
 ## admin page todos
+
 - [x] Access control - restrict /admin routes only to owner (role-check with supabase)
 - [x] Admin layout and nav - simple shell page with links to product list, add products etc
-- [ ] Product list view - table/list of existing products (name, stock, active status) with edit links.
-- [ ] Add product form - create new product, name in both languages, price, description, stock etc
+- [x] Product list view - table/list of existing products (name, stock, active status) with edit links.
+- [x] Add product form - create new product, name in both languages, price, description, stock etc
 - [ ] Edit product form - update existing product fields
 - [ ] variant management - add/edit/remove variants (color, price, stock) for a product
 - [ ] image upload/management - add/replace/delete product photos(supabase storage) with limit to size
-- [ ] Deactivate product - soft delete via is_active on product table. 
+- [ ] Deactivate product - soft delete via is_active on product table.
 - [ ] simplify getProducts/ProductSchema (storefront) now that getAdminProducts is separate — drop fields only admin needs
