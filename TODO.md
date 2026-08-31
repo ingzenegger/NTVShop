@@ -19,6 +19,8 @@
 - [ ] á mobile view (mögulega md og up líka) þarf að fá hlekki efst fyrir flokkana
 - [x] rename name_i18n/description_i18n columns (products, attributes, variants) back to name/description in DB — drop the `name:name_i18n` aliasing in queries once done
 
+- [ ] products: getProducts() selects unused created_at/updated_at - trim them out, but needs ProductSchema split first (storefront vs admin) since both fields are currently required
+
 ## admin page todos
 
 - [x] Access control - restrict /admin routes only to owner (role-check with supabase)

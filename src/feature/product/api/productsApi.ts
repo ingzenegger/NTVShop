@@ -8,7 +8,8 @@ export async function getProducts() {
     .select(
       "id, slug, price, currency, stock_quantity, is_active, created_at, updated_at, product_type, name, description, " +
         "product_assets(*), product_variants(id, product_id, name, price, stock_quantity, created_at), product_attributes(id, product_id, key, created_at, value)",
-    );
+    )
+    .eq("is_active", true);
 
   const parsed = ProductSchema.array().safeParse(data ?? []);
   if (!parsed.success) {
