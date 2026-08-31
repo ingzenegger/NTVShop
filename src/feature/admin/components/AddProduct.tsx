@@ -12,6 +12,7 @@ import { Switch } from "@/shared/components/ui/switch";
 import { NewProductSchema } from "@/shared/types/product";
 import { useState } from "react";
 import { addProduct } from "../api/addProduct";
+import { toast } from "sonner";
 
 export default function AddProduct() {
   const [nameIs, setNameIs] = useState("");
@@ -56,7 +57,7 @@ export default function AddProduct() {
 
         try {
           const newProduct = await addProduct(validated);
-          console.log("created product:", newProduct);
+          toast.success(`Product added: ${newProduct.name.en}`);
         } catch {
           setError("something went wrong saving the product. Try again.");
         }
